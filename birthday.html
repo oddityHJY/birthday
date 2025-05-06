@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>生日祝福 | Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            overflow: hidden;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 4em;
+            text-shadow: 3px 3px 0 #ff4757;
+            margin-top: 2em;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 2em;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-100px) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            animation: fall linear forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <h1>🎉 生日快乐！</h1>
+        
+        <div class="message">
+            <h2>亲爱的奋斗者</h2>
+            <p>在这个特别的日子里，愿所有美好如期而至！</p >
+            <p>🎂 愿你的每一天都充满阳光与欢笑</p >
+            <p>🎁 愿所有愿望都能实现</p >
+            <p>✨ 愿你永远保持灿烂的笑容</p >
+            <p style="color: #ff6b6b; font-weight: bold;">❤ 来自关心你的人 ❤</p >
+        </div>
+    </div>
+<audio autoplay loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/07/audio_2d4c7d94c4.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 创建飘落爱心
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        // 定时生成爱心
+        setInterval(createHearts, 300);
+
+        // 点击页面触发特效
+        document.body.addEventListener('click', function() {
+            for(let i = 0; i < 50; i++) {
+                setTimeout(createHearts, i * 10);
+            }
+        });
+    </script>
+</body>
+</html>
